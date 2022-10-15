@@ -10,7 +10,7 @@ services:
     volumes:
       - pg_drivenops_db:/var/lib/postgresql/data
   node_drivenops_app:
-    container_name: node_drivenops_app
+    container_name: node_drivenops_appdo
     build: ./back-end
     ports:
       - 5000:5000
