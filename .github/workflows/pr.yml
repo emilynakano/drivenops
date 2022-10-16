@@ -3,6 +3,7 @@ on: [pull_request]
 jobs:
   PullRequest:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
@@ -13,7 +14,9 @@ jobs:
           envkey_POSTGRES_PASSWORD: "postgres"
           envkey_POSTGRES_DB: "test"
           envkey_DATABASE_URL: "postgres://postgres:postgres@db:5432/test"
+          directory: back-end/
           file_name: .env.test
+          fail_on_empty: true
       - name: Run tests
         run: docker-compose -f docker-compose-test.yml run node_drivenops_app npm run test
       - name: Build
